@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<script type="text/javascript">
+  //массивы букв и цифр каждой клетки
+  const charArray = [...'ABCDEFGH'];
+  const digitArray = [...'12345678'];
+
+  function horse() {
+    let inputIndex = [...document.getElementById('horseIndex').value];
+
+    //координаты лошади
+    let x = charArray.indexOf(inputIndex[0]);
+    let y = digitArray.indexOf(inputIndex[1]);
+    let result = '';
+    if (x == -1 || y == -1) {
+      return;
+    }
+
+    //проверка клеток сверху
+    if (x - 1 >= 0 && y - 2 >= 0) {
+      result += charArray[x - 1] + digitArray[y - 2] + ' ';
+    }
+    if (x + 1 < 8 && y - 2 >= 0) {
+      result += charArray[x + 1] + digitArray[y - 2] + ' ';
+    }
+
+    //проверка клеток справа
+    if (x + 2 < 8 && y - 1 >= 0) {
+      result += charArray[x + 2] + digitArray[y - 1] + ' ';
+    }
+    if (x + 2 < 8 && y + 1 < 8) {
+      result += charArray[x + 2] + digitArray[y + 1] + ' ';
+    }
+
+    //проверка клеток снизу
+    if (x - 1 >= 0 && y + 2 < 8) {
+      result += charArray[x - 1] + digitArray[y + 2] + ' ';
+    }
+    if (x + 1 < 8 && y + 2 < 8) {
+      result += charArray[x + 1] + digitArray[y + 2] + ' ';
+    }
+
+    //проверка клеток слева
+    if (x - 2 >= 0 && y - 1 >= 0) {
+      result += charArray[x - 2] + digitArray[y - 1] + ' ';
+    }
+    if (x - 2 >= 0 && y + 1 < 8) {
+      result += charArray[x - 2] + digitArray[y + 1];
+    }
+    prompt('Возможные варианты хода', result);
+  }
+</script>
+
+<body>
+  <form class="" action="index.html" method="post">
+    Исходное положение <br><input type="text" id="horseIndex" value=""><br>
+
+    <input type="button" onclick="horse()" value="Ок">
+  </form>
+
+</body>
+
+</html>
